@@ -1,1 +1,42 @@
-<p>create-profile works!</p>
+<div class="container">
+  <mat-card class="card-container">
+    <mat-card-header class="title">Creating Profile..</mat-card-header>
+    <mat-form-field>
+      <input matInput placeholder="Name" [(ngModel)]="name" required #nameInput="ngModel">
+      <mat-error *ngIf="nameInput.invalid && nameInput.touched">Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Email" [(ngModel)]="email" required #emailInput="ngModel">
+      <mat-error *ngIf="emailInput.invalid && emailInput.touched">Email is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Phone" [(ngModel)]="phone" required #phoneInput="ngModel">
+      <mat-error *ngIf="phoneInput.invalid && phoneInput.touched">Phone is required</mat-error>
+    </mat-form-field>
+
+    <section>
+      <mat-label>Gender</mat-label>
+      <mat-radio-group [(ngModel)]="gender" name="gender" required #genderInput="ngModel">
+        <mat-radio-button value="masculine">Masculine</mat-radio-button>
+        <mat-radio-button value="feminine">Feminine</mat-radio-button>
+      </mat-radio-group>
+      <mat-error *ngIf="!gender && formSubmitted">Gender is required</mat-error>
+    </section>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="category" name="category" required #categoryInput="ngModel">
+        <mat-option value="single">Single</mat-option>
+        <mat-option value="married">Married</mat-option>
+      </mat-select>
+      <mat-error *ngIf="!category && formSubmitted">Category is required</mat-error>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button class="create-button" mat-button (click)="saveProfile()">Save</button>
+      <button class="create-button" mat-button routerLink="/profile/list-profiles">Cancel</button>
+    </div>
+  </mat-card>
+</div>
